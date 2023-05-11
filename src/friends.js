@@ -7,9 +7,9 @@ export const friends = [
     },
     {
         id:2,
-        name:'Nafia altaf',
+        name:'Nafiya jan',
         username:'nafiya_023',
-        email:'nill'
+        email:'nafiyajaan7@gmail.com'
     },
     {
         id:3,
@@ -22,6 +22,23 @@ export const friends = [
         name:'Najam gull',
         username:'yawer',
         email:'yawerabc@gmail.com'
+    },
+    {
+        id:5,
+        name:'sadia zargar',
+        username:'sadia',
+        email:'aadi@gmail.com'
+    },
+    {
+        id:6,
+        name:'Talib',
+        username:'sheh',
+        email:'talib@gmail.com'
+    },
+    {
+        id:7,
+        name:'Mouien',
+        username:'moin',
+        email:'moin645@gmail.com'
     }
-    
 ]

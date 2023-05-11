@@ -1,20 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Card from './Card'
+import Card from './Card';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
-import { friends } from './friends';
+// import { friends } from './friends';
+// import CardList from './CardList';
 
+import App from './App.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <div>
-      <Card id={friends[0].id} name={friends[0].name} email={friends[0].email}/> 
+    {/* <div> */}
+      {/* <Card id={friends[0].id} name={friends[0].name} email={friends[0].email}/> 
       <Card id={friends[1].id} name={friends[1].name} email={friends[1].email}/>
       <Card id={friends[2].id} name={friends[2].name} email={friends[2].email}/>
       <Card id={friends[3].id} name={friends[3].name} email={friends[3].email}/>
+      <Card id={friends[4].id} name={friends[4].name} email={friends[4].email}/> */}
+      {/* <CardList friends={friends}/> */}
+    {/* </div> */}
 
-    </div>
+    <App />
   </React.StrictMode>
 );
 
