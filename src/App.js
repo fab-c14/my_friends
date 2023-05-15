@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import CardList from "./CardList";
-import { friends } from "./friends";
+// import { friends } from "./friends"; we are going to use api instead of this now 
 import SearchBox from "./SearchBox";
+import './App.css';
 
 // const steate = {
 //     friends:friends,
@@ -14,12 +15,34 @@ class App extends Component{
         super(); // calling the constructor of inherited (parent)
         // we use constructor
         this.state = { // state can change , they live inside parent but we have to inherit them
-            friends:friends,
+            friends:[], // this would be an empty array because at intially we would not have any friend/robot
+            // react comes with lifecycle methods, these are methods which we can use, they will automatically trigger when app is loaded , lifecycle hooks (they are called)
+
+            // the way react works is 
+            // 1.mounting - when our app is loaded , our webpage is nothing but a div with root id, when we say mount we are replacing component with actuall code written inside component
+            // when mounting -> does this app have a constructor, does this have componentWillMount(), render(),componentDidMOunt()
+            //`2.updating
+            // you can found methods on official site
+            // 3.unmounting - move to different page, 
             searchfield:''
         }
+        console.log('constructor');
     }
 
-
+    // 1. mount - example 
+    componentDidMount(){
+        // this.setState({friends:friends})
+        // getting data from api and  using that data 
+        fetch('https://jsonplaceholder.typicode.com/users') // request to server
+        .then(response=>{
+            return response.json();
+        })
+        .then(users=>{
+            this.setState({friends:users});
+        })
+       
+        // console.log('componentdidmount');
+    }
     onSearchChange = (event)=>{
         // use dom manipulation
         this.setState({searchfield:event.target.value});
@@ -30,16 +53,22 @@ class App extends Component{
 
 
     render(){
+        console.log('render');
         const filterFriends = this.state.friends.filter(friends =>{
             return friends.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
+           
         })
+        if(this.state.friends.length===0){
+            return <h1>Loading ... </h1>
+        } else{
     return (
         <div className="tc">
-            <h1>My College Friends</h1>
+            <h1 className="f1">My College Friends</h1>
             <SearchBox searchChange={this.onSearchChange}/>
             <CardList friends={filterFriends}/>
         </div>
         );
+    }
     }
 }
 
@@ -55,3 +84,14 @@ export default App;
 
 // STATE >> props 
 // now lets start
+
+
+// now after completing we are going to discuss about the new topic which we have not covered
+
+// in real life we would not write friends.js, we would something use that is called api 
+// we would make request and 
+// actually we can do it by using jsonplaceholder
+// we can use this site to save our time and money
+// using this lets make our app more releastic
+
+// this app has some state so it is called smart component, 
