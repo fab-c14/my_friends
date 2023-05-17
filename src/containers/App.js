@@ -1,8 +1,10 @@
 import React, {Component} from "react";
-import CardList from "./CardList";
+import CardList from '../components/CardList'
 // import { friends } from "./friends"; we are going to use api instead of this now 
-import SearchBox from "./SearchBox";
+import SearchBox from "../components/SearchBox";
 import './App.css';
+
+import Scroll from '../components/Scroll';
 
 // const steate = {
 //     friends:friends,
@@ -53,22 +55,45 @@ class App extends Component{
 
 
     render(){
+
         console.log('render');
-        const filterFriends = this.state.friends.filter(friends =>{
-            return friends.name.toLowerCase().includes(this.state.searchfield.toLowerCase())
+        const {friends,searchfield} = this.state;
+        const filterFriends = friends.filter(friend =>{
+            return friend.name.toLowerCase().includes(searchfield.toLowerCase())
            
-        })
-        if(this.state.friends.length===0){
-            return <h1>Loading ... </h1>
-        } else{
-    return (
+        }) 
+
+
+    //     if(!friends.length){
+    //         return <h1>Loading ... </h1>
+    //     } 
+        
+    //     else{
+    // return (
+    //     <div className="tc">
+    //         <h1 className="f1">My College Friends</h1>
+    //         <SearchBox searchChange={this.onSearchChange}/>
+    //         <Scroll> {/*lets create this component */}
+    //             <CardList friends={filterFriends}/>
+    //         </Scroll>
+    //     </div>
+    //     ); 
+    // }
+    // use ternary instead of if -else
+
+    return !friends.length ?
+    <h1>Loading ... </h1> : 
+    (
         <div className="tc">
             <h1 className="f1">My College Friends</h1>
             <SearchBox searchChange={this.onSearchChange}/>
-            <CardList friends={filterFriends}/>
-        </div>
-        );
-    }
+            <Scroll> {/*lets create this component */}
+                 <CardList friends={filterFriends}/>
+            </Scroll>
+         </div>
+         );
+
+    
     }
 }
 
@@ -95,3 +120,6 @@ export default App;
 // using this lets make our app more releastic
 
 // this app has some state so it is called smart component, 
+
+
+// 
