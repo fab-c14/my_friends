@@ -134,4 +134,4 @@ export default App;
 
 // we are going to learn error boundaries and add this to  our project
 
-// deploying our react app
+// deploying our react app 
