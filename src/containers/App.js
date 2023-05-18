@@ -5,7 +5,7 @@ import SearchBox from "../components/SearchBox";
 import './App.css';
 
 import Scroll from '../components/Scroll';
-import ErrorBoundary from "../components/ErrorBoundary";
+// import ErrorBoundary from "../components/ErrorBoundary";
 // const steate = {
 //     friends:friends,
 //     searchfield:''
@@ -88,9 +88,9 @@ class App extends Component{
             <h1 className="f1">My College Friends</h1>
             <SearchBox searchChange={this.onSearchChange}/>
             <Scroll> {/*lets create this component */}
-            <ErrorBoundary>
+            {/* <ErrorBoundary> */}
                  <CardList friends={filterFriends}/>
-            </ErrorBoundary>
+            {/* </ErrorBoundary> */}
             </Scroll>
          </div>
          );
