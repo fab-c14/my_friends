@@ -5,7 +5,7 @@ import SearchBox from "../components/SearchBox";
 import './App.css';
 
 import Scroll from '../components/Scroll';
-
+import ErrorBoundary from "../components/ErrorBoundary";
 // const steate = {
 //     friends:friends,
 //     searchfield:''
@@ -88,7 +88,9 @@ class App extends Component{
             <h1 className="f1">My College Friends</h1>
             <SearchBox searchChange={this.onSearchChange}/>
             <Scroll> {/*lets create this component */}
+            <ErrorBoundary>
                  <CardList friends={filterFriends}/>
+            </ErrorBoundary>
             </Scroll>
          </div>
          );
@@ -123,3 +125,13 @@ export default App;
 
 
 // 
+
+
+// ERROR Boundary in React 
+// ERROR Boundaries, if there has some error in component -> for whatever reason there was not a graceful way to handle it . 
+
+// even if component breaks, then 
+
+// we are going to learn error boundaries and add this to  our project
+
+// deploying our react app
