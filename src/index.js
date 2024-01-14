@@ -4,12 +4,20 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import './index.css';
+import {Provider,connect} from 'react-redux';
 // import { friends } from './friends';
 // import CardList from './CardList';
+// first create a store 
+// action <- reducer <- store <- make changes
+// so lets create a store
 
+import { createStore } from 'redux';
 import App from './containers/App.js';
+import { searchFriends } from './reducers.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+const store = createStore(searchFriends);
 root.render(
+
   <React.StrictMode>
     {/* <div> */}
       {/* <Card id={friends[0].id} name={friends[0].name} email={friends[0].email}/> 
@@ -20,7 +28,7 @@ root.render(
       {/* <CardList friends={friends}/> */}
     {/* </div> */}
 
-    <App />
+    <App store={store}/>
   </React.StrictMode>
 );
 

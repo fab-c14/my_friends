@@ -13,7 +13,7 @@ import Scroll from "../components/Scroll";
 //  how to add states
 // moving this app to react hooks
 // class App extends Component
-function App() {
+function App(store) {
   // constructor(){
   //     super(); // calling the constructor of inherited (parent)
   //     // we use constructor
@@ -51,6 +51,7 @@ function App() {
   // }
 
   useEffect(() => {
+    console.log(store);
     fetch("https://jsonplaceholder.typicode.com/users") // request to server
       .then((response) => {
         return response.json();
