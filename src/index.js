@@ -28,7 +28,10 @@ root.render(
       {/* <CardList friends={friends}/> */}
     {/* </div> */}
 
-    <App store={store}/>
+    {/* <App store={store}/>// we don't need to do this to pass it as props again and again */}
+    <Provider store={store}>
+      <App /> 
+    </Provider>
   </React.StrictMode>
 );
 

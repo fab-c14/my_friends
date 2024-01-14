@@ -51,7 +51,7 @@ function App(store) {
   // }
 
   useEffect(() => {
-    console.log(store);
+    // console.log(store.getState());
     fetch("https://jsonplaceholder.typicode.com/users") // request to server
       .then((response) => {
         return response.json();
