@@ -29,7 +29,7 @@ root.render(
     {/* </div> */}
 
     {/* <App store={store}/>// we don't need to do this to pass it as props again and again */}
-    <Provider store={store}>
+    <Provider store={store}>{/*provider pass state to components*/}
       <App /> 
     </Provider>
   </React.StrictMode>

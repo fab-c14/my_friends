@@ -3,7 +3,8 @@ import CardList from "../components/CardList";
 // import { friends } from "./friends"; we are going to use api instead of this now
 import SearchBox from "../components/SearchBox";
 import "./App.css";
-
+import {connect} from 'react-redux';
+import {setSearchField} from '../actions';
 import Scroll from "../components/Scroll";
 // import ErrorBoundary from "../components/ErrorBoundary";
 // const steate = {
@@ -112,7 +113,7 @@ function App(store) {
 }
 // }
 
-export default App;
+// export default App;
 
 // props, state -> read props and render
 // one way data flow -> cardlist - pure function, receives input and gives same output - these are called pure components or dumb components. (this is really nice )
@@ -145,3 +146,4 @@ export default App;
 // we are going to learn error boundaries and add this to  our project
 
 // deploying our react app
+export default connect()(App);
