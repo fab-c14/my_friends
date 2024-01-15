@@ -1,46 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import "./App.css";
 import { connect, useSelector, useDispatch } from 'react-redux';
-import { setSearchField } from '../actions';
+import { requestFriends, setSearchField } from '../actions';
 import Scroll from "../components/Scroll";
 
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField
+    searchField: state.searchField, // Update the correct path based on your Redux state
+    friends: state.requestFriends.robots,
+    isPending: state.requestFriends.isPending,
+    error: state.requestFriends.error
   };
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onSearchChange: (event) => dispatch(setSearchField(event.target.value))
+    onSearchChange: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestFriends: () => dispatch(requestFriends())
   };
 }
 
-function App() {
-  const [Friends, setFriends] = useState([]);
-  const searchField = useSelector((state) => state.SearchField);
+function App({ searchField, friends, isPending, error, onSearchChange, onRequestFriends }) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((users) => setFriends(users));
-  }, []);
+    console.log(friends);
+    onRequestFriends();
+  },[]);
 
-  const filterFriends = Friends.length > 0
-    ? Friends.filter((friend) => {
-        return friend.name && friend.name.toLowerCase().includes(searchField.toLowerCase());
-      })
-    : [];
+  const filterFriends = friends.filter((friend) => {
+    return friend.name && friend.name.toLowerCase().includes(searchField.toLowerCase())
+  });
 
-  return !Friends.length ? (
+  return isPending ? (
     <h1>Loading ... </h1>
+  ) : error ? (
+    <h1>Error fetching friends.</h1>
   ) : (
     <div className='tc'>
       <h1 className='f1'>My College Friends</h1>
-      <SearchBox searchChange={(event) => dispatch(setSearchField(event.target.value))} />
+      <SearchBox searchChange={onSearchChange} />
       <Scroll>
         <CardList friends={filterFriends} />
       </Scroll>

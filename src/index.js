@@ -5,19 +5,21 @@ import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import './index.css';
 import { createLogger } from 'redux-logger';
-import {Provider,connect} from 'react-redux';
+import {Provider} from 'react-redux';
 // import { friends } from './friends';
 // import CardList from './CardList';
 // first create a store 
 // action <- reducer <- store <- make changes
 // so lets create a store
-
-import { createStore,applyMiddleware } from 'redux';
+import {thunk} from 'redux-thunk';
+import { createStore,applyMiddleware,combineReducers} from 'redux';
 import App from './containers/App.js';
-import { searchFriends } from './reducers.js';
+import { searchFriends,requestFriends } from './reducers.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const logger = createLogger();// this is a middleware, lets apply to our app
-const store = createStore(searchFriends,applyMiddleware(logger));
+// const store = createStore(searchFriends,applyMiddleware(thunk,logger));
+const rootReducer = combineReducers({searchFriends,requestFriends})
+const store = createStore(rootReducer,applyMiddleware(thunk,logger));
 
 root.render(
 
