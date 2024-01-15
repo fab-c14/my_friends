@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import 'tachyons';
 import './index.css';
+import { createLogger } from 'redux-logger';
 import {Provider,connect} from 'react-redux';
 // import { friends } from './friends';
 // import CardList from './CardList';
@@ -11,11 +12,13 @@ import {Provider,connect} from 'react-redux';
 // action <- reducer <- store <- make changes
 // so lets create a store
 
-import { createStore } from 'redux';
+import { createStore,applyMiddleware } from 'redux';
 import App from './containers/App.js';
 import { searchFriends } from './reducers.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = createStore(searchFriends);
+const logger = createLogger();// this is a middleware, lets apply to our app
+const store = createStore(searchFriends,applyMiddleware(logger));
+
 root.render(
 
   <React.StrictMode>
