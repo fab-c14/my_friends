@@ -5,6 +5,7 @@ const intialState = {
     SearchField:''
 }
 export const searchFriends = (state=intialState,action={})=>{// actions are objects we are returning
+    console.log(action.type)
     switch(action.type){
         case CHANGE_SEARCH_FIELD:
             // return Object.assign({},state,SearchField:action.payload);//another way
