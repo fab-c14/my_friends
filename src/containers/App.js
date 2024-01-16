@@ -1,14 +1,15 @@
+// App.js
 import React, { useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import "./App.css";
-import { connect, useSelector, useDispatch } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { requestFriends, setSearchField } from '../actions';
 import Scroll from "../components/Scroll";
 
 const mapStateToProps = (state) => {
   return {
-    searchField: state.searchField, // Update the correct path based on your Redux state
+    searchField: state.searchFriends.SearchField,
     friends: state.requestFriends.robots,
     isPending: state.requestFriends.isPending,
     error: state.requestFriends.error
@@ -26,12 +27,11 @@ function App({ searchField, friends, isPending, error, onSearchChange, onRequest
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(friends);
     onRequestFriends();
-  },[]);
+  }, []);
 
   const filterFriends = friends.filter((friend) => {
-    return friend.name && friend.name.toLowerCase().includes(searchField.toLowerCase())
+    return friend.name && friend.name.toLowerCase().includes(searchField.toLowerCase());
   });
 
   return isPending ? (
