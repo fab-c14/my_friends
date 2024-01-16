@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import CardList from "../components/CardList";
 import SearchBox from "../components/SearchBox";
 import "./App.css";
-import { connect, useDispatch, useSelector } from 'react-redux';
+import { connect} from 'react-redux';
 import { requestFriends, setSearchField } from '../actions';
 import Scroll from "../components/Scroll";
 
@@ -24,7 +24,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 function App({ searchField, friends, isPending, error, onSearchChange, onRequestFriends }) {
-  const dispatch = useDispatch();
 
   useEffect(() => {
     onRequestFriends();
